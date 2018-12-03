@@ -247,15 +247,14 @@ function buildLocalCommands(cli, isLocalSite) {
   })
 
   cli.command({
-    command: `plugin <action> <plugin>`,
+    command: `plugin <action> <plugins..>`,
     desc: `Manage Gatsby plugins.`,
     builder: _ =>
       _.positional(`action`, {
         type: `string`,
         describe: `Action to be taken for provided plugin`,
         choices: [`add`, `remove`],
-      })
-      .positional(`plugin`, {
+      }).positional(`plugin`, {
         type: `string`,
         describe: `Package to add, remove, etc..`,
       }),
