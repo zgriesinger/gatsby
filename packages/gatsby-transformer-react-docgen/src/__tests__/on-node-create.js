@@ -1,6 +1,5 @@
-import { groupBy, keyBy } from "lodash"
-
 import fs from "fs"
+import { groupBy } from "lodash"
 import onCreateNode from "../on-node-create"
 import path from "path"
 
