@@ -32,7 +32,8 @@ const getDoclets = str => {
 
   for (; match; match = DOCLET_PATTERN.exec(str)) {
     val = match[2] ? match[2].replace(/\r$/, ``) : true
-    doclets[match[1]] = val
+    const key = match[1]
+    doclets[key] = doclets[key] ? [].concat(doclets[key], val) : val
   }
 
   return doclets

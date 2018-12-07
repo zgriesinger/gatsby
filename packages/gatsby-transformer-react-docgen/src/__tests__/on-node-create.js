@@ -1,7 +1,8 @@
+import { groupBy, keyBy } from "lodash"
+
 import fs from "fs"
-import path from "path"
-import { groupBy } from "lodash"
 import onCreateNode from "../on-node-create"
+import path from "path"
 
 const readFile = file =>
   new Promise((y, n) => {
@@ -78,6 +79,16 @@ describe(`transformer-react-doc-gen: onCreateNode`, () => {
       `Bar`,
       `Qux`,
     ])
+  })
+
+  it(`should make arrays of duplicate doclets`, async () => {
+    await run(node)
+
+    let Bar = groupBy(createdNodes, `internal.type`).ComponentMetadata.find(
+      d => d.displayName === `Bar`
+    )
+
+    expect(Bar.doclets.property).toHaveLength(2)
   })
 
   it(`should infer a name`, async () => {
