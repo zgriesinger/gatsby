@@ -503,7 +503,7 @@ function getValidRoutes({
 
     // A valid route exposes its _links (for now)
     if (route._links) {
-      const entityType = getRawEntityType(route)
+      const entityType = getRawEntityType(key)
 
       // Excluding the "technical" API Routes
       const excludedTypes = [
@@ -596,9 +596,9 @@ function getValidRoutes({
  * @param {any} route
  */
 const getRawEntityType = route =>
-  route._links.self.substring(
-    route._links.self.lastIndexOf(`/`) + 1,
-    route._links.self.length
+  route.substring(
+    route.lastIndexOf(`/`) + 1,
+    route.length
   )
 
 /**
